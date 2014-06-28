@@ -11,19 +11,20 @@ if(isset($ps)&& isset($rn))
 		$filesize=$_FILES["photo"]["size"];
 		$filetype=$_FILES["photo"]["type"];
 
-		if ($filesize== 0 && $check)
+		if ($filesize== 0)
 		{
 			echo "<br>No image selected";
 			$check = false;
+			
 		}
 
-		if ($filesize/1024 >2048 && $check) 
+		if ($filesize/1024 >2048) 
 		{
 			echo "<br>Image size should be less than 2 MB";
 			$check = false;
 		}
 
-		if(!(($filetype== "image/png") || ($filetype== "image/gif") || ($filetype== "image/jpg")|| ($filetype== "image/jpeg") && $check))
+		if(!(($filetype== "image/png") || ($filetype== "image/gif") || ($filetype== "image/jpg")|| ($filetype== "image/jpeg")))
 		{
 			echo "<br>Selected file is not an image file";
 			$check = false;
@@ -39,6 +40,9 @@ if(isset($ps)&& isset($rn))
 			echo "<a href=Welcome.php> <button>Home</button> </a>";
 		
 		}
-		
+		else
+          {
+            echo '<br></br><a href=photouploadform.php> <button> Back </button> </a>';
+           }
 	}
 ?>
