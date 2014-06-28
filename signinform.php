@@ -1,4 +1,6 @@
 <html>
+<body style="background-color: skyblue;"> 
+<h2> Sign In </h2>
 <form action="signin.php" method="post">
    <table>
    <tr>
@@ -12,4 +14,5 @@
    </tr>
    </table>
    </form>
+   </body>
 </html>
