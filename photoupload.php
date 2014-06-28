@@ -1,6 +1,11 @@
-  <?php
+<?php
+ include_once("db.php") 
+ ?>
+<?php
 session_start();
-if(isset($_POST['picsubmit']))
+$rn= $_POST["rollnumber"];
+$ps= $_POST['picsubmit'];
+if(isset($ps)&& isset($rn))
 	{
 		$check = true;
 		$filesize=$_FILES["photo"]["size"];
@@ -26,8 +31,8 @@ if(isset($_POST['picsubmit']))
 
 		if($check)
 		{
-
-			move_uploaded_file($_FILES["photo"]["tmp_name"],"c:/xampp/www". $_SESSION['rollnumber'].'.png')
+            
+			 move_uploaded_file($_FILES["photo"]["tmp_name"],"c:/xampp/www".$rn.".png")
 			  or die('Error');
 
 			echo "File uploaded successfully";
