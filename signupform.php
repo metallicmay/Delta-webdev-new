@@ -1,53 +1,50 @@
-<?php
- include_once("db.php") 
- ?>
- 
-<?php
-     $name=$_POST['name'];
-     $rollnum = $_POST['rollnumber'];
-	 $dept = $_POST['department'];
-	 $sex = $_POST['sex'];
-	 $pwd = $_POST['password'];
-	 $confpwd = $_POST['confirmpassword'];
-	 $check = true;
-   
-     if($name=="" || $rollnum=="" ||$dept == "select" || $sex == "" || $pwd == "" || $confpwd == "")
-			{
-				echo '<br>Do not leave any field blank';
-				$check = false;
-			}
-	if((!preg_match("/^[a-zA-Z\s]+$/",$name)))
-	 { 
-	  echo "<br></br>Invalid format for Name-please use alphabets only"; 
-	  $check=false;
-	 }
-	 
-	 if((!preg_match("/^[0-9]{9}$/",$rollnum)) || $rollnum<100000000 || $rollnum>115100000)
-     {
-	  echo "<br></br>Invalid roll number!";
-	  $check=false;
-      }	 
-	 if( $pwd!=$confpwd)
-	 { echo "<br></br>Passwords do not match!";
-	 $check=false;
-	 }
-	 
-if($check)
-  {
-  $sql="INSERT INTO user (NAME,ROLLNUMBER, DEPT, SEX, PASSWORD)
-            VALUES ('$name','$rollnum','$dept','$sex','$pwd')";
-$query=mysql_query($sql);
-if(!$query)
-   echo "Failed" .mysql_error();	
-   
-else
-    {echo "Registration successful";
-	echo "<a href=signinform.php> <button>Sign in</button> </a>";
-	}
-}
-else
-{
- echo '<br></br><a href=signupform.php> <button> Back </button> </a>';
- }
-	
-?>
+<html>
+<head>
+<title> REGISTRATION FORM </title>
+<h1 align=center> REGISTRATION FORM</h1>
+<body style="background-color: skyblue;color:black;">
+<form  action="signup.php" method="post">
+ <table cellpadding="6">
+ <tr>
+ <td> <label for="fn"> Name* </label> </td>
+  <td> <input type="text" name="name" id="fn"> <td>
+  </tr>
+  <tr>
+  <td> <label for="rn"> Roll Number* </label> </td> 
+  <td> <input type="text" name="rollnumber" id="rn"> </td>
+  </tr>
+   <tr>
+   <td><label for="dept"> Department* </label> </td>
+   <td> <select name="department" id="dept">
+			  <option value=""> DEPT</option>
+			  <option value="chem">CHEM</option>
+			  <option value="civ">CIV</option>
+			  <option value="cse">CSE</option>
+			  <option value="ece">ECE</option>
+			  <option value="eee">EEE</option>
+			  <option value="ice">ICE</option>
+			  <option value="mech">MECH</option>
+			  <option value="meta">META</option>
+			  <option value="prod">PROD</option>
+	</select> </td>
+   </tr>
+   <tr>
+   <td> <p>Sex* </p> </td>
+   <td><input type="radio" name="sex" value="Male" id="male"> <label for="male">Male</label>
+   <input type="radio" name="sex" value="Female" id="female"> <label for="female">Female</label> </td>
+   </tr>
+   <tr>
+   <td> <label for="pwd"> Password* </label> </td> 
+   <td> <input type="password" name="password" id="pwd"> </td>
+   </tr>
+   <tr>
+   <td> <label for="confpwd"> Confirm password* </label> </td> 
+   <td> <input type="password" name="confirmpassword" id="confpwd"> </td>
+   </tr>
+   <tr>
+   <td> <input type="submit" name="submit" value="Submit"> </td>  
+    </tr>   
+   </table>
+   </form>
+   </body>
+</html>
