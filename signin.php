@@ -11,7 +11,7 @@ $pwd = $_POST['pass'];
   mysql_select_db("deltausers",$con)
 	or
 	die("Cant connect :" . mysql_error());
-	$query= mysql_query("SELECT * FROM user WHERE ROLLNUMBER ='".$rollnum."' AND PASSWORD ='".$pwd."'") or die(mysql_error());
+	$query= mysql_query("SELECT * FROM user WHERE ROLLNUMBER ='".$rollnum."' AND PASSWORD ='".md5($pwd)."'") or die(mysql_error());
     $result=mysql_fetch_array($query);
    if($result)
     { echo "Successful login!";  
