@@ -1,6 +1,5 @@
 <?php
 session_start();
 session_destroy();
-header("location:landingpage.php");
-
+header("location:welcome.php");
 ?>
