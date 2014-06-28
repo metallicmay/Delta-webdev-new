@@ -7,6 +7,7 @@
 	 $dept = $_POST['department'];
 	 $sex = $_POST['sex'];
 	 $pwd = $_POST['password'];
+	 $pwd_hash = md5($pwd); 
 	 $confpwd = $_POST['confirmpassword'];
 	 $check = true;
    
@@ -34,7 +35,7 @@
 if($check)
   {
   $sql="INSERT INTO user (NAME,ROLLNUMBER, DEPT, SEX, PASSWORD)
-            VALUES ('$name','$rollnum','$dept','$sex','$pwd')";
+            VALUES ('$name','$rollnum','$dept','$sex','$pwd_hash')";
 $query=mysql_query($sql);
 if(!$query)
    echo "Failed" .mysql_error();	
