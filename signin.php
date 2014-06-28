@@ -5,7 +5,6 @@
 session_start();
 $rollnum = $_POST['rollnum'];
 $pwd = $_POST['pass'];
-//$pwd_hash = md5($pwd); 
  $name="";
  $check=0;
  $con = mysql_connect('localhost:3306','root','') or  die("Cannot connect :" . mysql_error()); 
@@ -17,7 +16,7 @@ $pwd = $_POST['pass'];
    if($result)
     { echo "Successful login!";  
       $name=$result['NAME'];
-	  echo "<a href=logout.php> <button>Log out</button> </a>";
+	  
 	  echo '<h3>Hello ' . $name . '</h3>';
 	  $check=1;
 	  	}
@@ -29,6 +28,7 @@ $pwd = $_POST['pass'];
 	{
 	echo "Click the button below to go to Photo Upload Form";
 	echo "<br></br> <a href=photouploadform.php> <button> Photo Upload Form </button> </a>";
+	echo "<br></br><a href=logout.php> <button>Log out</button> </a>";
 	}
 	mysql_close($con);
 
