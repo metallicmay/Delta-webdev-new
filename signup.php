@@ -1,7 +1,6 @@
 <?php
  include_once("db.php") 
- ?>
- 
+ ?> 
 <?php
      $name=$_POST['name'];
      $rollnum = $_POST['rollnumber'];
@@ -16,9 +15,25 @@
 				echo '<br>Do not leave any field blank';
 				$check = false;
 			}
-   
-  if($check)
-     $sql="INSERT INTO user (NAME,ROLLNUMBER, DEPT, SEX, PASSWORD)
+	if((!preg_match("/^[a-zA-Z\s]+$/",$name)))
+	 { 
+	  echo "<br></br>Invalid format for Name-please use alphabets only"; 
+	  $check=false;
+	 }
+	 
+	 if((!preg_match("/^[0-9]{9}$/",$rollnum)) || $rollnum<100000000 || $rollnum>115100000)
+     {
+	  echo "<br></br>Invalid roll number!";
+	  $check=false;
+      }	 
+	 if( $pwd!=$confpwd)
+	 { echo "<br></br>Passwords do not match!";
+	 $check=false;
+	 }
+	 
+if($check)
+  {
+  $sql="INSERT INTO user (NAME,ROLLNUMBER, DEPT, SEX, PASSWORD)
             VALUES ('$name','$rollnum','$dept','$sex','$pwd')";
 $query=mysql_query($sql);
 if(!$query)
@@ -26,7 +41,12 @@ if(!$query)
    
 else
     {echo "Registration successful";
-	echo "<a href=signinform.php> <button>Sign in</button> </a>";
+	echo "<br></br><a href=signinform.php> <button>Sign in</button> </a>";
 	}
+}
+else
+{
+ echo '<br></br><a href=signupform.php> <button> Back </button> </a>';
+ }
 	
 ?>
